@@ -3,9 +3,11 @@
 set -e
 
 # Clone the ansible-lint repository
-rm -rf ansible-lint
-git clone https://github.com/willthames/ansible-lint.git
+rm -rf $WORKSPACE/ansible-lint
+git clone https://github.com/willthames/ansible-lint.git $WORKSPACE
 
-export PYTHONPATH=$PYTHONPATH:`pwd`/ansible-lint/lib
+# Setup path for ansible-lint command
+export PYTHONPATH=$PYTHONPATH:$WORKSPACE/ansible-lint/lib
 
-ansible-lint/bin/ansible-lint ping.yml
+# invoke the test
+$WORKSPACE/ansible-lint/bin/ansible-lint ping.yml
