@@ -2,10 +2,8 @@
 
 set -e
 
-# Clone the ansible-lint repository
-echo "===== Removing Old Directory ====="
-rm -rf "$WORKSPACE/ansible-lint"
 echo "===== Cloning Ansible-Lint Project ====="
+echo 'git clone https://github.com/willthames/ansible-lint.git "$WORKSPACE/ansible-lint"'
 git clone https://github.com/willthames/ansible-lint.git "$WORKSPACE/ansible-lint"
 
 # Setup path for ansible-lint command
