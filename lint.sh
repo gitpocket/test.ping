@@ -14,4 +14,4 @@ export PYTHONPATH=$PYTHONPATH:"$WORKSPACE/ansible-lint/lib"
 
 # invoke the test
 echo "===== Invoking Test ====="
-"$WORKSPACE/ansible-lint/bin/ansible-lint" ping.yml
+"python $WORKSPACE/ansible-lint/bin/ansible-lint" "$WORKSPACE/ansible-lint/examples/play.yml"
