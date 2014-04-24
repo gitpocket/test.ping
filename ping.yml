@@ -1,5 +1,5 @@
 ---
-hosts: all
-tasks:
-  - name: Check to make sure hosts are responding
-    action: ping
+ - hosts: all
+   tasks:
+   - name: Check to make sure hosts are responding
+     action: ping
