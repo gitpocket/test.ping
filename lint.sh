@@ -4,7 +4,7 @@ set -e
 
 # Clone the ansible-lint repository
 rm -rf $WORKSPACE/ansible-lint
-git clone https://github.com/willthames/ansible-lint.git "$WORKSPACE/"
+git clone https://github.com/willthames/ansible-lint.git "$WORKSPACE/ansible-lint"
 
 # Setup path for ansible-lint command
 export PYTHONPATH=$PYTHONPATH:$WORKSPACE/ansible-lint/lib
