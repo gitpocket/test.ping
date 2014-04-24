@@ -8,7 +8,9 @@ git clone https://github.com/willthames/ansible-lint.git "$WORKSPACE/ansible-lin
 
 # Setup path for ansible-lint command
 echo "===== Setting PYTHONPATH ====="
+echo $PYTHONPATH
 export PYTHONPATH=$PYTHONPATH:"$WORKSPACE/ansible-lint/lib"
+echo $PYTHONPATH
 
 # Invoke the test
 echo "===== Invoking Test ====="
