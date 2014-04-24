@@ -8,4 +8,4 @@ git clone https://github.com/willthames/ansible-lint.git
 
 export PYTHONPATH=$PYTHONPATH:`pwd`/ansible-lint/lib
 
-ansible-lint ping.yml
+ansible-lint/bin/ansible-lint ping.yml
