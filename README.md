@@ -37,17 +37,6 @@ This section is for common conventions we should be following when creating our 
   when: ansible_os_family == 'RedHat'
 ```
 
-### Mandatory Variables
-
-Start your tasks with a check on mandatory variables that can't be defined in defaults. A good example of this would be credentials, like a newrelic key or rackspace cloud username / apikey.
-
-```
-- name: Check for newrelic_license_key
-  fail:
-    msg: "newrelic_license_key has not been defined"
-  when: newrelic_license_key|default(False) == False
-```
-
 ### Ansible Managed Message
 
 Include the [Ansible Managed message](https://github.com/rack-roles/test.ping/blob/master/managed.j2) at the top of any templates.
@@ -74,3 +63,23 @@ When describing variables in a README file, the following format seems to be the
 #### Namespacing
 
 All variables should include the role name so they are properly namespaced to avoid conflicts. `role_name_variable_name` is a good example.
+
+Some variables will be able to span across roles. Use the following variables if you have need of their values:
+
+* `rackspace_username`: The Rackspace Cloud Account username.
+* `rackspace_apikey`: The Rackspace Cloud Account api key.
+
+#### Mandatory Variables
+
+Start your tasks with a check on mandatory variables that can't be defined in defaults. A good example of this would be credentials, like a newrelic key or rackspace cloud username / apikey.
+
+```
+- name: Check for newrelic_license_key
+  fail:
+    msg: "newrelic_license_key has not been defined"
+  when: newrelic_license_key|default(False) == False
+```
+
+#### Testing with Variables
+
+Drone has the ability to embed provided variables into your `.drone.yml`. Add a variable to drone in the Params section and you can then reference the variables in your `.drone.yml` file, jinja style. See the [drone docs](https://github.com/drone/drone#params-injection) for an example.
