@@ -62,3 +62,15 @@ Include the [Ansible Managed message](https://github.com/rack-roles/test.ping/bl
 ### Galaxy Meta Files
 
 Changes to the `meta/main.yml` file will not automatically reload in Galaxy. The change has to be imported manually through the Ansible Galaxy website.
+
+### Variables
+
+#### README File
+
+When describing variables in a README file, the following format seems to be the easiest to read.
+
+* `variable_name`: Description of the variable. (Default: default_value)
+
+#### Namespacing
+
+All variables should include the role name so they are properly namespaced to avoid conflicts. `role_name_variable_name` is a good example.
