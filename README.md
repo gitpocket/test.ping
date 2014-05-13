@@ -27,14 +27,37 @@ This section is for common conventions we should be following when creating our 
 ### OS Support
 
 * We are currently targeting **Ubuntu 14.04 LTS** with these roles.
-* Multi-distribution targeting should be done in a manner similar to the [newrelic role](https://github.com/rack-roles/newrelic/tree/master/tasks). Avoid multiple `when: ansible_os_family` calls and split tasks once in the `main.yml` task file.
+* Multi-distribution targeting should be done in a manner similar to the [newrelic role](https://github.com/rack-roles/newrelic/tree/master/tasks). Avoid multiple `when: ansible_os_family` calls and split tasks once in the `main.yml` task file. 
 
+main.yml
 ```
 - include: debian.yml
   when: ansible_os_family == 'Debian'
-
+  
 - include: redhat.yml
   when: ansible_os_family == 'RedHat'
+  
+- include: unsupported_os.yml
+  when: YOURROLE_supported_os is not defined
+```
+
+debian.yml
+```
+---
+- name: Debian | Supported OS
+  set_fact:
+    YOURROLE_supported_os: True
+    
+# Rest of your included tasks here
+```
+
+unsupported_os.yml
+```
+---
+- name: Default | Check for unsupported target operating system
+  fail:
+    msg: "The operating system of the target machine ({{ inventory_hostname }}) is not currently supported"
+
 ```
 
 ### Ansible Managed Message
