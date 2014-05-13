@@ -19,3 +19,12 @@ In order for tests to be run for your repository, the following steps have to be
 1. Create a `tests` directory in the root of your repository. Follow [this example](https://github.com/rack-roles/test.ping/tree/master/tests).
 * `roles.list` contains a list of roles to be installed before invoking your test playbook. **Should include the role you are testing at a minimum.**
 * `main.yml` is the playbook that performs the functional test of your role. [This example](https://github.com/rack-roles/test.ping/blob/master/tests/main.yml) shows a minimum requirements.
+
+## Conventions
+
+This section is for common conventions we should be following when creating our roles.
+
+### OS Support
+
+* We are currently targeting **Ubuntu 14.04 LTS** with these roles.
+* Multi-distribution targeting should be done in a manner similar to the [newrelic role](https://github.com/rack-roles/newrelic/tree/master/tasks). Avoid multiple `when: ansible_os_family` calls and split tasks once in the `main.yml` task file.
