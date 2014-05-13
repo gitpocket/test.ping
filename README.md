@@ -101,3 +101,19 @@ tasks:
     with_items: default_packages| union(custom_packages)
     when: ansible_os_family == 'Debian'
 ```
+
+### Conditional Tasks with Register and When
+
+Sometimes, whether or not a task should be run depends on the result of another task. You can make use of the `register` and `when` modules to build in this logic.
+
+Here we are only rebuilding kibana IF git detects a change or if we are manually forcing it by overriding the `kibana_force_rebuild` variable which defaults to False.
+
+```
+- name: Clone Kibana
+  git: repo={{ kibana_git }} dest={{ kibana_git_clone_location }} update=yes version={{ kibana_git_branch_or_tag }}
+  register: git_clone_result
+
+- name: Rebuild Kibana
+  include: rebuild_kibana.yml
+  when: git_clone_result|changed or kibana_force_rebuild
+```
