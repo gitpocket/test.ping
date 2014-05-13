@@ -30,6 +30,11 @@ This section is for common conventions we should be following when creating our 
 * Multi-distribution targeting should be done in a manner similar to the [newrelic role](https://github.com/rack-roles/newrelic/tree/master/tasks). Avoid multiple `when: ansible_os_family` calls and split tasks once in the `main.yml` task file.
 
 ```
+- include: debian.yml
+  when: ansible_os_family == 'Debian'
+
+- include: redhat.yml
+  when: ansible_os_family == 'RedHat'
 ```
 
 ### Mandatory Variables
@@ -41,4 +46,15 @@ Start your tasks with a check on mandatory variables that can't be defined in de
   fail:
     msg: "newrelic_license_key has not been defined"
   when: newrelic_license_key|default(False) == False
+```
+
+### Ansible Managed Message
+
+Include the [Ansible Managed message](https://github.com/rack-roles/test.ping/blob/master/managed.j2) at the top of any templates.
+
+```
+################################################################################
+# {{ ansible_managed }}
+# Contact your support team for assistance with this file.
+################################################################################
 ```
