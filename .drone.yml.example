@@ -1,0 +1,6 @@
+image: linuturk/ubuntu-ansible
+script:
+  - git clone https://github.com/rack-roles/test.ping
+  - bash test.ping/lint.sh
+  - ansible-galaxy install -r /var/cache/drone/src/github.com/rack-roles/{{ role_name }}/tests/roles.list
+  - ansible-playbook /var/cache/drone/src/github.com/rack-roles/{{ role_name }}/tests/main.yml --connection=local

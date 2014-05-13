@@ -1,0 +1,4 @@
+---
+- hosts: localhost
+  roles:
+    - Rackspace_Automation.{{ role_name }}
