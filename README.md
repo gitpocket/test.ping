@@ -58,3 +58,7 @@ Include the [Ansible Managed message](https://github.com/rack-roles/test.ping/bl
 # Contact your support team for assistance with this file.
 ################################################################################
 ```
+
+### Galaxy Meta Files
+
+Changes to the `meta/main.yml` file will not automatically reload in Galaxy. The change has to be imported manually through the Ansible Galaxy website.
