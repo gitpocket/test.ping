@@ -5,10 +5,16 @@ This repository is used to document our testing procedures, and provide some res
 
 ## Testing Environment
 
-Testing is performed using [Drone](https://github.com/drone/drone). In order for tests to be run for your repository, the following steps have to be followed.
+Testing is performed using [Drone](https://github.com/drone/drone).
+
+* Sytax checking is performed by `yaml_syntax.py` and `jinja_syntax.py`.
+* Function tests are run using the `main.yml` playbook in the `tests` directory.
+
+In order for tests to be run for your repository, the following steps have to be followed:
 
 1. Add the role to [Ansible Galaxy](https://galaxy.ansible.com/) under our [Rackspace_Automation](https://galaxy.ansible.com/list#/users/2126) user.
 1. Add the repository to our [drone instance](https://drone-opsdev.rax.io/dashboard).
+1. If your templates directory **doesn't** have any templates, touch a file named `placeholder.j2` in that directory. This is required for the syntax checking above.
 1. Create a `.drone.yml` file in the root of your repository. Follow [this example](https://github.com/rack-roles/test.ping/blob/master/.drone.yml.example).
 1. Create a `tests` directory in the root of your repository. Follow [this example](https://github.com/rack-roles/test.ping/tree/master/tests).
 * `roles.list` contains a list of roles to be installed before invoking your test playbook. **Should include the role you are testing at a minimum.**
