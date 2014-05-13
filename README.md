@@ -83,3 +83,21 @@ Start your tasks with a check on mandatory variables that can't be defined in de
 #### Testing with Variables
 
 Drone has the ability to embed provided variables into your `.drone.yml`. Add a variable to drone in the Params section and you can then reference the variables in your `.drone.yml` file, jinja style. See the [drone docs](https://github.com/drone/drone#params-injection) for an example.
+
+#### List Unisons
+
+List unisons are useful when you need to combine a set of default values with a list of supplied options, without having to redefine the entire default list. Here is a good example showing the installation of packages:
+
+```
+vars:
+  default_packages:
+    - vim
+    - strace
+  custom_packages:
+    - cowsay
+tasks:
+  - name: installing a bunch o packages
+    apt: pkg={{ item }} state=present
+    with_items: default_packages| union(custom_packages)
+    when: ansible_os_family == 'Debian'
+```
