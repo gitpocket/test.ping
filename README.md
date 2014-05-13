@@ -28,3 +28,17 @@ This section is for common conventions we should be following when creating our 
 
 * We are currently targeting **Ubuntu 14.04 LTS** with these roles.
 * Multi-distribution targeting should be done in a manner similar to the [newrelic role](https://github.com/rack-roles/newrelic/tree/master/tasks). Avoid multiple `when: ansible_os_family` calls and split tasks once in the `main.yml` task file.
+
+```
+```
+
+### Mandatory Variables
+
+Start your tasks with a check on mandatory variables that can't be defined in defaults. A good example of this would be credentials, like a newrelic key or rackspace cloud username / apikey.
+
+```
+- name: Check for newrelic_license_key
+  fail:
+    msg: "newrelic_license_key has not been defined"
+  when: newrelic_license_key|default(False) == False
+```
