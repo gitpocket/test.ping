@@ -2,17 +2,17 @@
 
 set -e
 
-DRONEDIR="/var/cache/drone/src/github.com/rack-roles"
+DRONEDIR="/var/cache/drone/src/github.com/rack-roles/test.ping"
 
 for dir in tests
 do
     # Basic YAML syntax checking script
     echo "===== Checking $dir directory ====="
-    python $DRONEDIR/test.ping/yaml_check.py $DRONEDIR/$dir/*.yml
+    python $DRONEDIR/yaml_check.py $DRONEDIR/$dir/*.yml
 done
 for dir in tests
 do
     # Basic YAML syntax checking script
     echo "===== Checking $dir directory ====="
-    python $DRONEDIR/test.ping/jinja_check.py $DRONEDIR/$dir/*.j2
+    python $DRONEDIR/jinja_check.py $DRONEDIR/$dir/*.j2
 done
