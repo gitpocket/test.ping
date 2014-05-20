@@ -1,0 +1,3 @@
+image: linuturk/ubuntu-ansible
+script:
+  - bash /var/cache/drone/src/github.com/rack-roles/test.ping/tests/test.sh
