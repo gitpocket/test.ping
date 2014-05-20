@@ -8,11 +8,11 @@ for dir in tests
 do
     # Basic YAML syntax checking script
     echo "===== Checking $dir directory ====="
-    python test.ping/yaml_check.py $DRONEDIR/$dir/*.yml
+    python $DRONEDIR/test.ping/yaml_check.py $DRONEDIR/$dir/*.yml
 done
 for dir in tests
 do
     # Basic YAML syntax checking script
     echo "===== Checking $dir directory ====="
-    python test.ping/jinja_check.py $DRONEDIR/$dir/*.j2
+    python $DRONEDIR/test.ping/jinja_check.py $DRONEDIR/$dir/*.j2
 done
