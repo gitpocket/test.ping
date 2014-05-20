@@ -14,5 +14,5 @@ for dir in templates
 do
     # Basic Jinja syntax checking script
     echo "===== Checking $dir directory ====="
-    python test.ping/jinja_check.py $DRONEDIR/$dir/*.j2
+    python test.ping/jinja_check.py $DRONEDIR/$dir *.j2
 done
