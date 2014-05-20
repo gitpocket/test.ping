@@ -2,7 +2,7 @@
 
 set -e
 
-DRONEDIR="/var/cache/drone/src/github.com/rack-roles/*"
+DRONEDIR="/var/cache/drone/src/github.com/rack-roles"
 
 for dir in tests
 do
