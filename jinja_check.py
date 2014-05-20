@@ -7,7 +7,7 @@ def dummy():
     '''
     pass
 
-env = jinja2.Environment(loader=FileSystemLoader(sys.argv[1]))
+env = jinja2.Environment(loader=jinja2.FileSystemLoader(sys.argv[1]))
 env.filters['mandatory'] = dummy
 
 exit = 0
