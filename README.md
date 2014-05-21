@@ -20,6 +20,15 @@ In order for tests to be run for your repository, the following steps have to be
 * `roles.list` contains a list of roles to be installed before invoking your test playbook. **Should include the role you are testing at a minimum.**
 * `main.yml` is the playbook that performs the functional test of your role. [This example](https://github.com/rack-roles/test.ping/blob/master/tests/main.yml) shows a minimum requirements.
 
+## Docker Images
+
+There are currently two docker images available for testing:
+
+* `linuturk/ubuntu-ansible` is based on Ubuntu 14.04 and is built from [this source.](https://github.com/Linuturk/ubuntu-ansible)
+* `linuturk/centos-ansible` is based on CentOS 6.5 and is built from [this source.](https://github.com/Linuturk/centos-ansible)
+
+You can specifiy either of these images in your testing, and you won't have to worry about installing Ansible in your Docker image.
+
 ## Conventions
 
 This section is for common conventions we should be following when creating our roles.
