@@ -1,6 +1,6 @@
 image: linuturk/ubuntu-ansible
 script:
-  - git clone https://github.com/rack-roles/test.ping
-  - bash test.ping/lint.sh
-  - ansible-galaxy install -r /var/cache/drone/src/github.com/rack-roles/{{ role_name }}/tests/roles.list
-  - ansible-playbook /var/cache/drone/src/github.com/rack-roles/{{ role_name }}/tests/main.yml --connection=local
+  - ansible-galaxy install -r $DRONE_BUILD_DIR/tests/roles.list
+  - ansible-playbook --syntax-check $DRONE_BUILD_DIR/tests/main.yml
+  - ansible-playbook $DRONE_BUILD_DIR/tests/main.yml --connection=local
+  - ansible-playbook $DRONE_BUILD_DIR/tests/main.yml --connection=local | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
