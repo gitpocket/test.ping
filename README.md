@@ -29,6 +29,16 @@ There are currently two docker images available for testing:
 
 You can specifiy either of these images in your testing, and you won't have to worry about installing Ansible in your Docker image.
 
+## Docker Testing Gotchas
+
+### Rsyslog
+
+A good number of services and packages require some sort of system logging to be running inside the container. Docker images typically don't start any such service. If you are seeing strange behavior, it might be worth it to add the following line to your `.drone.yml` file.
+
+```
+rsyslogd &
+```
+
 ## Conventions
 
 This section is for common conventions we should be following when creating our roles.
