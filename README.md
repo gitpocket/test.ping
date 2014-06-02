@@ -7,7 +7,7 @@ This repository is used to document our testing procedures, and provide some res
 
 Testing is performed using [Drone](https://github.com/drone/drone).
 
-* Sytax checking is performed by `yaml_syntax.py` and `jinja_syntax.py`.
+* Sytax checking is performed with the `ansible-playbook --syntax-check` option.
 * Function tests are run using the `main.yml` playbook in the `tests` directory.
 
 In order for tests to be run for your repository, the following steps have to be followed:
@@ -15,10 +15,10 @@ In order for tests to be run for your repository, the following steps have to be
 1. Add the role to [Ansible Galaxy](https://galaxy.ansible.com/) under our [Rackspace_Automation](https://galaxy.ansible.com/list#/users/2126) user.
 1. Add the repository to our [drone instance](https://drone-opsdev.rax.io/dashboard/team/opsdev-ansible).
 1. If your templates directory **doesn't** have any templates, touch a file named `placeholder.j2` in that directory. This is required for the syntax checking above.
-1. Create a `.drone.yml` file in the root of your repository. Follow [this example](https://github.com/rack-roles/test.ping/blob/master/.drone.yml.example).
+1. Create a `.drone.yml` file in the root of your repository. [This file](https://github.com/rack-roles/test.ping/blob/master/.drone.yml.example) should drop in without any modification.
 1. Create a `tests` directory in the root of your repository. Follow [this example](https://github.com/rack-roles/test.ping/tree/master/tests).
 * `roles.list` contains a list of roles to be installed before invoking your test playbook. **Should include the role you are testing at a minimum.**
-* `main.yml` is the playbook that performs the functional test of your role. [This example](https://github.com/rack-roles/test.ping/blob/master/tests/main.yml) shows a minimum requirements.
+* `main.yml` is the playbook that performs the functional test of your role. [This example](https://github.com/rack-roles/test.ping/blob/master/tests/main.yml) shows a minimum requirements. **Add any functional tests using the various testing modules in Ansible (assert, stat, uri, etc)**
 
 ## Docker Images
 
