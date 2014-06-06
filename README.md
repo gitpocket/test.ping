@@ -3,6 +3,10 @@ test.ping
 
 This repository is used to document our testing procedures, and provide some resources for testing and standards across our roles.
 
+## Parameters
+
+**If your role requires any sort of credentials, mark the repository as PRIVATE in Drone. This will prevent credentials from leaking in the debug output.**
+
 ## Testing Environment
 
 Testing is performed using [Drone](https://github.com/drone/drone).
