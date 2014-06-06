@@ -7,6 +7,21 @@ This repository is used to document our testing procedures, and provide some res
 
 **If your role requires any sort of credentials, mark the repository as PRIVATE in Drone. This will prevent credentials from leaking in the debug output.**
 
+Here is a good convention for defining these via ENV variables. This doesn't prevent leakage of data through a failed task in your tasks.
+
+```
+image: linuturk/ubuntu-ansible
+env:
+  - RAXUSER={{rax_user}}
+  - RAXKEY={{rax_key}}
+script:
+  - ansible-galaxy install -r $DRONE_BUILD_DIR/tests/roles.list
+  - ansible-playbook --syntax-check $DRONE_BUILD_DIR/tests/main.yml
+  - ansible-playbook $DRONE_BUILD_DIR/tests/main.yml --extra-vars "rackspace_username=$RAXUSER rackspace_apikey=$RAXKEY"
+  - ansible-playbook $DRONE_BUILD_DIR/tests/main.yml --extra-vars "rackspace_username=$RAXUSER rackspace_apikey=$RAXKEY"
+  - "ansible-playbook $DRONE_BUILD_DIR/tests/main.yml --extra-vars \"rackspace_username=$RAXUSER rackspace_apikey=$RAXKEY\" | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"
+```
+
 ## Testing Environment
 
 Testing is performed using [Drone](https://github.com/drone/drone).
