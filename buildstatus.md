@@ -1,7 +1,7 @@
-# Build Status |
- |
-| Role | Status | |
-|------|--------| |
+# Build Status
+
+| Role | Status |
+|------|--------|
 | `apache` | [![Build Status](https://drone-opsdev.rax.io/github.com/rack-roles/apache/status.svg?branch=master)](https://drone-opsdev.rax.io/github.com/rack-roles/apache) |
 | `base` | [![Build Status](https://drone-opsdev.rax.io/github.com/rack-roles/base/status.svg?branch=master)](https://drone-opsdev.rax.io/github.com/rack-roles/base) |
 | `cloud-backup-agent` | [![Build Status](https://drone-opsdev.rax.io/github.com/rack-roles/cloud-backup-agent/status.svg?branch=master)](https://drone-opsdev.rax.io/github.com/rack-roles/cloud-backup-agent) |
